@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 
 const contatoSchema = new mongoose.Schema({
+  // mongo já vem com chave primaria chamada _id, entao nao precisamos criar um campo id
   nome: {
     type: String,
     required: true,
@@ -20,7 +21,7 @@ const contatoSchema = new mongoose.Schema({
   },
   foto: {
     type: String,
-    required: true,
+    required: false,
   },
 });
 

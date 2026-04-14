@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 
 
-const contatoRouter = require('./routes/contatoRoutes.js');
+const contatoRouter = require('./routes/contatoRoutes');
 app.use('/contatos', contatoRouter);
 
 
