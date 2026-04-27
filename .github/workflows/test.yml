@@ -28,4 +28,7 @@ jobs:
 
 
       - name: Run tests
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          PORT: ${{ var.PORT }}
         run: npm test
