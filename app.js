@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const middlewareErrors = require('./errors/errors');
+
 dotenv.config();
 
 mongoose.set('strictQuery', false);
@@ -11,6 +13,7 @@ app.use(express.json());
 
 const contatoRouter = require('./routes/contatoRoutes');
 app.use('/contatos', contatoRouter);
+app.use(middlewareErrors);
 
 
 mongoose.connect(process.env.MONGODB_URI, {
