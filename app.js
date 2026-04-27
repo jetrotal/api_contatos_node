@@ -16,10 +16,15 @@ app.use('/contatos', contatoRouter);
 app.use(middlewareErrors);
 
 
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// Debug: verificar se MONGODB_URI está definido
+if (process.env.MONGODB_URI) {
+  mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+} else {
+  console.warn('⚠️  AVISO: MONGODB_URI não está definido. Testes podem falhar.');
+}
 
 
 const db = mongoose.connection;
@@ -32,7 +37,6 @@ db.once('open', () => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
-  console.log(`servidor address ${MONGODB_URI} `)
 });
 
 module.exports = app; // Exporta o app para os testes
